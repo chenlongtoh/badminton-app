@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //import 'package:map1/assets/news_data.json' as response;
 import 'package:http/http.dart' as http;
-import 'package:map1/articleCard.dart';
-import 'package:map1/classes/news.dart';
+import 'articleCard.dart';
+import 'package:map1/model/news.dart';
 
 class Carousel extends StatefulWidget {
   @override
   _CarouselState createState() => _CarouselState();
 }
 
-class _CarouselState extends State<Carousel> {
+class _CarouselState extends State<Carousel> with AutomaticKeepAliveClientMixin<Carousel> {
   static final String apiKey = "c9ba6fc660314ec5a0ae56e5cbcf61a2";
   final String apiUrl = "http://newsapi.org/v2/top-headlines?country=my&category=sports&apiKey=$apiKey";
   //final Map result = jsonDecode();
@@ -97,6 +97,7 @@ class _CarouselState extends State<Carousel> {
         return Container(
           height: 234,
           child: ListView.builder(
+            padding: EdgeInsets.only(left: 10, right: 10),
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
@@ -118,4 +119,6 @@ class _CarouselState extends State<Carousel> {
 
 
   }
+  @override
+  bool get wantKeepAlive => true;
 }
